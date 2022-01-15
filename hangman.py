@@ -1,14 +1,11 @@
+from ctypes.wintypes import WORD
 import random
 
 def getWord():
-    word = input("Enter the word you want your opponent to guess: ")
-    print("   O   ")
-    print("  _|_    ")
-    print(" / | \ ")    
-    print("   |   ")
-    print("  / \   ")
-    print(" /   \  ")
-    return word
+    with open ("words.txt", 'r') as f:
+        words = f.readlines()
+        chosenWord = random.choice(words)
+        return(chosenWord)
 
 def hangman():
     word = getWord()
@@ -40,9 +37,24 @@ def hangman():
 
     #telling player if they lost or won the game
     if done:
-        print(f"You Won! The word is {word}")
+        print("  ______ ")
+        print(" |      |      ")
+        print("")
+        print(" |      O   ")
+        print(" |    / | \ ")    
+        print(" |      |   ")
+        print(" |     / \   ")
+        print(" |    /   \  ")
+        print(f"You Won!")
     else:
-        print("You Died! Coorect answer was {word}")
+        print("  ______ ")
+        print(" |      |      ")
+        print(" |      O   ")
+        print(" |    / | \ ")    
+        print(" |      |   ")
+        print(" |     / \   ")
+        print(" |    /   \  ")
+        print("You Died! Corect answer was {word}")
 
 
 #driver code
