@@ -1,12 +1,14 @@
 from ctypes.wintypes import WORD
 import random
 
+#get a random word from the provided text file
 def getWord():
     with open ("words.txt", 'r') as f:
-        words = f.readlines()
+        words = f.read().split()
         chosenWord = random.choice(words)
-        return(chosenWord)
+    return(chosenWord)
 
+#hangman game
 def hangman():
     word = getWord()
     word_list = []
@@ -17,9 +19,9 @@ def hangman():
         for letter in word:
             #letting player know if the guessed alphabet is present or not
             if letter.lower() in word_list:
-                print(letter, end = " ")
+                print(letter, end=" ")
             else:
-                print("_", end = " ") 
+                print("_", end=" ")
 
         #telling the player number of tries left
         guess = input(f"Tries: {tries}, Next Guess: ")
@@ -39,7 +41,6 @@ def hangman():
     if done:
         print("  ______ ")
         print(" |      |      ")
-        print("")
         print(" |      O   ")
         print(" |    / | \ ")    
         print(" |      |   ")
@@ -49,6 +50,7 @@ def hangman():
     else:
         print("  ______ ")
         print(" |      |      ")
+        print("")
         print(" |      O   ")
         print(" |    / | \ ")    
         print(" |      |   ")
